@@ -1,0 +1,3 @@
+rootProject.name = 'UmCount'
+
+include ':app'
