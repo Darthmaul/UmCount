@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableHighlight } from 'react-native'
+import { View, Text, StyleSheet, TextInput, TouchableHighlight, Button } from 'react-native'
+import store from './mobx/counterStore'
+import {observer} from 'mobx-react';
+
+
 
 class NewItem extends Component {
   constructor (props) {
@@ -56,8 +60,12 @@ const NoItems = () => (
 const Items = ({items}) => (
   <View style={{flex: 1, paddingTop: 10}}>
    {items.map((item, i) => {
-        return <Text style={styles.item} key={i}>• {item}</Text>
-      })
+        return (<View>
+          <Text style={styles.item} key={i}>• {item} - {store.counter}</Text>
+          <Button onPress={() => store.increment()} title="+1" color="#50EB5D"/>
+          <Button onPress={() => store.decrement()} title="-1" color="#EB506A" />
+          </View>
+        )})
     }
   </View>
 )
