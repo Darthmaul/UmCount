@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, TextInput, TouchableHighlight, Button } from 'r
 import store from './mobx/counterStore'
 import {observer} from 'mobx-react';
 
-
+var uuid = require('react-native-uuid');
 
 class NewItem extends Component {
   constructor (props) {
@@ -62,8 +62,7 @@ const Items = ({items}) => (
    {items.map((item, i) => {
         return (<View>
           <Text style={styles.item} key={i}>• {item} - {store.counter}</Text>
-          <Button onPress={() => store.increment()} title="+1" color="#50EB5D"/>
-          <Button onPress={() => store.decrement()} title="-1" color="#EB506A" />
+          <Button onPress={() => store.increment()} title="+1" color="#50EB5D" key={uuid()} />
           </View>
         )})
     }
